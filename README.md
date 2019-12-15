@@ -1,4 +1,4 @@
-# QR-Code-Based-Attendance-System
+# QR-Code-Based-Attendance-System using Python and Kivy
 
 Note: This project is still going on as of December 2019. The developers (Gatdula, Jonson and Pacomio) are currently working to improve the GUI and package the program as an apk and exe file.
 
