@@ -9,6 +9,6 @@ To run this program, you need to install the following:
 Kivy, OpenCV, pyzbar, pandas, xlsxwriter
 # ------------------------------------------------------
 
-To use the program, kindly read the User_manual.pdf
+To use the program, kindly read the User_Manual.pdf
 
 If you have comments, suggestions or you want to help in packaging the program for Android and iOS, kindly send an email to jonsonkurt@gmail.com
