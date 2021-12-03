@@ -1,14 +1,13 @@
-# QR-Code-Based-Attendance-System using Python and Kivy
+QR Code Generator and Class Attendance System (Built using Python, Kivy, and KivyMD)
 
-Note: This project is still a work in progress as of December 2019. The developers (Gatdula, Jonson, and Pacomio) are currently working to improve the GUI and package the program as an apk and exe file.
+QR Code Generator and Class Attendance System is a mobile application for android phones. Through it, university instructors will have an organized and computerized attendance record, wherein the student’s full name becomes the basis to create a QR code. Once the generated QR Code gets scanned under the application, the student will be put into a list under the date of scan. The application can export an excel file containing the attendance record for the day.
 
-The traditional attendance system, which is pen and paper, is time-consuming and can cause inconvenience if the record of class attendance was either lost or damaged. As a solution, the programmers developed a QR code-based attendance system application that works on mobile phones on the android platform. Through it, university instructors will have an organized and computerized attendance record and will reduce inaccuracy and loss of records.
+![image](https://user-images.githubusercontent.com/55541726/144646542-ccb2a106-0e0c-4797-8f7e-73a177ce04b1.png)
 
-# ------------------------------------------------------
-To run this program, you need to install the following:
-Kivy, OpenCV, pyzbar, pandas, xlsxwriter
-# ------------------------------------------------------
+![image](https://user-images.githubusercontent.com/55541726/144646583-5677cb57-5c3c-4e1f-9026-b1c18f3b442c.png)
 
-To use the program, kindly read the User_Manual.pdf
+![image](https://user-images.githubusercontent.com/55541726/144646608-8ea80986-af78-401d-abdf-6b1e488bed9e.png)
 
-If you have comments, suggestions or you want to help in packaging the program for Android and iOS, kindly send an email to jonsonkurt@gmail.com
+![image](https://user-images.githubusercontent.com/55541726/144646626-64583d70-8f6a-4fb0-85ef-baddac65d4b2.png)
+
+Read the documentation: 
