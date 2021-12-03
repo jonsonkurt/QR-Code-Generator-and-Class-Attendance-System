@@ -8,4 +8,4 @@ QR Code Generator and Class Attendance System is a mobile application for androi
 
 ![image](https://user-images.githubusercontent.com/55541726/144647448-e87b4e85-2352-4513-98ab-69a13ced53b6.png)
 
-Read the user manual: 
+Read the user manual: https://github.com/jonsonkurt/QR-Code-Based-Attendance-System/blob/092785905c8e1dfc330e9e1b9d73d5d29c653233/QR%20Attendance%20User%20Manual.pdf
