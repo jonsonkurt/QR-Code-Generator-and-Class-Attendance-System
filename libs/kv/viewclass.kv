@@ -1,0 +1,264 @@
+# forms the design and layout of view class screen
+<ViewClassScreen>
+
+    on_pre_enter:
+        app.root.get_screen('nav_screen').ids.toolbar.title = 'Record Attendance'
+        app.root.get_screen('nav_screen').ids.toolbar.right_action_items = \
+        [['card-plus', lambda x: root.add_student_dialog()]]
+
+    on_leave:
+        app.root.get_screen('nav_screen').ids.toolbar.title = 'QR Attendance'
+        app.root.get_screen('nav_screen').ids.toolbar.right_action_items = \
+        [['blank', lambda x: app.show_screen("classes")]]
+		self.ids.student_list.clear_widgets()
+
+	FloatLayout:
+		pos_hint: {'center_y': 0.85, 'center_x': 0.5}
+		size_hint: 0.88, 0.20
+		canvas:
+			Color:
+				rgba: rgba('#8E8686')
+			RoundedRectangle:
+				size: self.size
+				pos: self.pos
+				radius: [40, 40, 40, 40]
+
+        MDCard:
+            id: class_title
+            multiline: True
+            markup: True
+            halign: 'Center'
+            font_size: '13dp'
+            theme_text_color: 'Custom'
+            md_bg_color: rgba('#FFFFFF')
+            text_color: rgba('#8E8686')
+            pos_hint: {'center_y': 0.625, 'center_x': 0.625}
+            size_hint: 0.55, 0.25
+            radius: [20,]
+
+            MDLabel:
+                id: class_name
+                text: "Class Name"
+                markup: True
+                bold: True
+                halign: 'center'
+                theme_text_color: 'Custom'
+                text_color: rgba('#8E8686')
+
+        MDCard:
+            id: section_title
+            multiline: True
+            markup: True
+            halign: 'Center'
+            font_size: '13dp'
+            theme_text_color: 'Custom'
+            md_bg_color: rgba('#FFFFFF')
+            text_color: rgba('#8E8686')
+            pos_hint: {'center_y': 0.365, 'center_x': 0.625}
+            size_hint: 0.55, 0.17
+            radius: [15,]
+
+            MDLabel:
+                id: section_name
+                text: "Section"
+                markup: True
+                font_size: '8dp'
+                halign: 'center'
+                theme_text_color: 'Custom'
+                text_color: rgba('#8E8686')
+
+	FloatLayout:
+		pos_hint: {'center_y': 0.85, 'center_x': 0.225}
+		size_hint: 0.15, 0.10
+		canvas:
+			Color:
+				rgba: rgba('#FFFFFF')
+			RoundedRectangle:
+				size: self.size
+				pos: self.pos
+				radius: [30,]
+
+        MDIcon:
+            pos_hint: {'center_x': 0.5, 'center_y' : 0.5}
+            halign: 'center'
+            icon: 'file-document'
+            font_size: '35dp'
+            theme_text_color: 'Custom'
+            text_color: rgba('#8E8686')
+
+	MDFillRoundFlatButton:
+		text: "[b] ON-TIME [/b]"
+        multiline: True
+        markup: True
+        halign: 'Center'
+        font_size: '10dp'
+		theme_text_color: 'Custom'
+		md_bg_color: rgba('#83C285')
+		text_color: rgba('#FFFFFF')
+		pos_hint: {'center_y': 0.650, 'center_x': 0.160}
+        size_hint: 0.20, 0.15
+        radius: [40, 40, 40, 40]
+        on_press:
+            root.ontime_scan()
+            app.show_screen("scan")
+
+	MDFillRoundFlatButton:
+		text: "[b] LATE [/b]"
+        bold: True
+        multiline: True
+        markup: True
+        halign: 'Center'
+        font_size: '10dp'
+		theme_text_color: 'Custom'
+		md_bg_color: rgba('#C96969')
+		text_color: rgba('#FFFFFF')
+		pos_hint: {'center_y': 0.650, 'center_x': 0.410}
+        size_hint: 0.20, 0.15
+        radius: [40, 40, 40, 40]
+        on_press:
+            root.late_scan()
+            app.show_screen("scan")
+
+	MDFillRoundFlatButton:
+		text: "[b] EXPORT ATTENDANCE [/b]"
+        bold: True
+        multiline: True
+        markup: True
+        halign: 'Center'
+        font_size: '10dp'
+		theme_text_color: 'Custom'
+		md_bg_color: rgba('#8E8686')
+		text_color: rgba('#FFFFFF')
+		pos_hint: {'center_y': 0.693, 'center_x': 0.745}
+        size_hint: 0.385, 0.060
+        radius: [40, 40, 40, 40]
+        on_press:
+            root.export_excel()
+
+	MDFillRoundFlatButton:
+		text: "[b] DELETE CLASS [/b]"
+        bold: True
+        multiline: True
+        markup: True
+        halign: 'Center'
+        font_size: '10dp'
+		theme_text_color: 'Custom'
+		md_bg_color: rgba('#8E8686')
+		text_color: rgba('#FFFFFF')
+		pos_hint: {'center_y': 0.610, 'center_x': 0.745}
+        size_hint: 0.385, 0.060
+        radius: [40, 40, 40, 40]
+        on_press:
+            root.delete_class_dialog()
+
+	FloatLayout:
+		pos_hint: {'center_y': 0.3, 'center_x': 0.5}
+		size_hint: 0.88, 0.50
+		canvas:
+			Color:
+				rgba: rgba('#8E8686')
+			RoundedRectangle:
+				size: self.size
+				pos: self.pos
+				radius: [40, 40, 40, 40]
+
+    MDLabel:
+        text: '[b] STUDENTS [/b]'
+        markup: True
+        font_size: '15dp'
+		theme_text_color: 'Custom'
+		text_color: rgba('#FFFFFF')
+        halign: 'center'
+        pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+
+    BoxLayout:
+        pos_hint: {'center_y': 0.275, 'center_x': 0.5}
+        size_hint: 0.8, 0.375
+
+        MDScrollViewRefreshLayout:
+            id: refresh_layout
+            refresh_callback: root.refresh_callback
+            root_layout: root
+
+            MDBoxLayout:
+                id: student_list
+                orientation: 'vertical'
+                index: 0
+                adaptive_height: True
+                padding: '5dp'
+                spacing: '8dp'
+
+# forms the design and layout of delete student dialogue box
+<DeleteStudent>
+
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "30dp"
+    elevation: 20
+
+    MDFillRoundFlatButton:
+        text: " Delete "
+        theme_text_color: 'Custom'
+        md_bg_color: rgba('#39aea8')
+        text_color: rgba('#FFFFFF')
+        pos_hint: {'center_x': .9, 'center_y': .5}
+        on_press:
+            root.delete_student_name()
+
+# forms the design and layout of the student name section
+<Card2>
+    orientation: "vertical"
+	size_hint: None, None
+    size: "250dp" , "30dp"
+	pos_hint: {"center_x": .5, "center_y": .5}
+	radius: 15,15,15,15
+	elevation: 5
+	padding: '15dp'
+	spacing: '3dp'
+
+    canvas:
+        Color:
+            rgba:
+                (rgba('#FFFFFF') if root.color_index == 1 \
+                else rgba('#83C285') if root.color_index == 2 else rgba('#C96969'))
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+
+    on_press:
+        print(root.index)
+        root.modify_student(root.index)
+        root.add_student_key(root.index)
+
+	MDLabel:
+		text: root.name
+		font_size: '10dp'
+		markup: True
+        bold: True
+		halign: "left"
+		theme_text_color: 'Custom'
+		text_color: rgba('#8E8686') if root.color_index == 1 else rgba('#FFFFFF')
+        pos_hint: {"center_x": .5, "center_y": .5}
+
+# forms the design and layout of 
+<AddStudent>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "80dp"
+    elevation: 20
+
+    MDTextField:
+		id: stud_list
+        hint_text: "List of Students or Student Name"
+		line_color_focus: rgba('#303030')
+
+	MDFillRoundFlatButton:
+		text: " Add "
+		theme_text_color: 'Custom'
+		md_bg_color: rgba('#39aea8')
+		text_color: rgba('#FFFFFF')
+		pos_hint: {'center_x': .9, 'center_y': .6}
+        on_release:
+            root.save_student(stud_list.text)

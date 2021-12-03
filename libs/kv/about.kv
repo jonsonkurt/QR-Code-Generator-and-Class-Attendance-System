@@ -1,0 +1,79 @@
+# froms and design and layout of about the app screen
+<AboutScreen>
+	FloatLayout:
+		pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+		size_hint: 0.88, 0.8
+
+		canvas:
+			Color:
+				rgba: rgba('#8E8686')
+			RoundedRectangle:
+				size: self.size
+				pos: self.pos
+				radius: [40, 40, 40, 40]
+
+        MDCard:
+            orientation: "vertical"
+            size_hint: None, None
+            size: "265dp", "170dp"
+            pos_hint: {"center_x": .5, "center_y": .73}
+            radius: 15,15,15,15
+            elevation: 3
+            padding: '15dp'
+            spacing: '2dp'
+            theme_text_color: 'Custom'
+            md_bg_color: rgba('#FFFFFF')
+
+            MDLabel:
+                text: "About the Application"
+                halign: 'center'
+                theme_text_color: "Secondary"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDSeparator:
+                height: "1dp"
+
+            MDLabel:
+                text:
+                    ("Quick Response (QR) Code-Based Attendance and QR Code Generator \
+                    Application is a group development project by three students from \
+                    Bachelor of Science in Computer Engineering, 2-2, Cavite State University \
+                    - Main Campus, Academic year 2020-2021.")
+                halign: 'center'
+                font_size: '12dp'
+
+        MDCard:
+            orientation: "vertical"
+            size_hint: None, None
+            size: "265dp", "170dp"
+            pos_hint: {"center_x": .5, "center_y": .27}
+            radius: 15,15,15,15
+            elevation: 3
+            padding: '15dp'
+            spacing: '2dp'
+            theme_text_color: 'Custom'
+            md_bg_color: rgba('#FFFFFF')
+
+            MDLabel:
+                text: "Developers"
+                halign: 'center'
+                theme_text_color: "Secondary"
+                size_hint_y: None
+                height: self.texture_size[1]
+
+            MDSeparator:
+                height: "1dp"
+
+            MDLabel:
+                text: "Gatdula, Hanznyl Vission T."
+                font_size: '12dp'
+                halign: 'center'
+            MDLabel:
+                text: "Jonson, Kurt Jalen M."
+                font_size: '12dp'
+                halign: 'center'
+            MDLabel:
+                text: "Pacomio, John Emmanuel C."
+                font_size: '12dp'
+                halign: 'center'

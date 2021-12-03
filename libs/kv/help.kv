@@ -1,0 +1,78 @@
+# forms the design and layout of each question and answer of FAQ screen
+<FAQCard>
+    orientation: "vertical"
+	size_hint: None, None
+	size: "220dp", "130dp"
+    pos_hint: {"center_x": .5, "center_y": .5}
+	border_radius: [30,30,30,30]
+	radius: 15,15,15,15
+	padding: '10dp'
+	spacing: '2dp'
+
+    canvas:
+        Color:
+            rgba: rgba('#FFFFFF')
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+			radius: 15,15,15,15
+	MDLabel:
+		text: root.question
+		font_size: '14dp'
+		markup: True
+        bold: True
+		halign: "left"
+		theme_text_color: 'Custom'
+		text_color: rgba('#8E8686')
+	MDLabel:
+		text: root.answer
+		font_size: '11dp'
+		markup: True
+		halign: "left"
+		theme_text_color: 'Custom'
+		text_color: rgba('#8E8686')
+
+# forms the design and layout of help screen
+<HelpScreen>
+	FloatLayout:
+		pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+		size_hint: 0.88, 0.8
+
+		canvas:
+			Color:
+				rgba: rgba('#8E8686')
+			RoundedRectangle:
+				size: self.size
+				pos: self.pos
+				radius: [40, 40, 40, 40]
+	FloatLayout:
+		pos_hint: {'center_y': 0.775, 'center_x': 0.5}
+		size_hint: 0.7, 0.1
+
+        BoxLayout:
+            orientation: 'vertical'
+            pos_hint: {'center_y': 0.625, 'center_x': 0.5}
+            canvas:
+                Color:
+                    rgba: rgba('#FFFFFF')
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [20, 20, 20, 20]
+            MDLabel:
+                text: 'Frequently Asked Questions'
+                halign: 'center'
+                markup: True
+                theme_text_color: 'Custom'
+                text_color: rgba('#767676')
+    BoxLayout:
+        pos_hint: {'center_y': 0.425, 'center_x': 0.5}
+        size_hint: 0.7, 0.525
+
+        ScrollView:
+            MDBoxLayout:
+                id:faq
+                orientation: 'vertical'
+                adaptive_height: True
+                padding: '5dp'
+                spacing: '15dp'

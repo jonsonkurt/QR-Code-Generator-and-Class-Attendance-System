@@ -1,0 +1,98 @@
+# forms the design and layout of the register screen
+<RegisterScreen>
+    FitImage:
+        source: 'Media/BG.png'
+	FloatLayout:
+		canvas:
+			Color:
+				rgba: rgba('#39aea8')
+			Triangle:
+				points: (0, self.size[1] - (0.4*self.size[1]), 0, self.size[1], self.size[0], self.size[1])
+			Color:
+				rgba: rgba('#9ac1bf')
+            Triangle:
+                points:
+                    (self.size[0], self.size[1] - (0.4*self.size[1]), \
+                    self.size[0]//2, self.size[1] - (0.2*self.size[1]), self.size[0], self.size[1])
+		MDIconButton:
+			icon: 'keyboard-backspace'
+			pos_hint: {'center_x': 0.1, 'center_y' : 0.94}
+			theme_text_color: 'Custom'
+			text_color: (1, 1, 1, 1)
+            on_press:
+                root.manager.transition.direction="right"
+                root.manager.transition.duration=.5
+                root.manager.current="login"
+		MDLabel:
+			text: 'Create an account'
+            bold: True
+			halign: "center"
+			pos_hint: {'center_x': 0.5, 'center_y' : 0.70}
+			theme_text_color: 'Custom'
+			text_color: (1, 1, 1, 1)
+			text_size: (0.3, 0.2)
+		MDTextField:
+			id: fname
+			hint_text: 'First Name'
+            mode: "rectangle"
+			size_hint: (0.6, 0.1)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.60}
+            line_color_focus: rgba('#39aea8')
+            icon_right: "account"
+            icon_right_color: 1,1,1,1
+            color_mode: 'custom'
+            current_hint_text_color: rgba('#c2d1d0')
+		MDTextField:
+			id: lname
+			hint_text: 'Last Name'
+            mode: "rectangle"
+			size_hint: (0.6, 0.1)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.50}
+            line_color_focus: rgba('#39aea8')
+            icon_right: "account"
+            icon_right_color: 1,1,1,1
+            color_mode: 'custom'
+            current_hint_text_color: rgba('#c2d1d0')
+		MDTextField:
+			id: emailid
+			hint_text: 'Email Address'
+            mode: "rectangle"
+			size_hint: (0.6, 0.1)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.40}
+            line_color_focus: rgba('#39aea8')
+            icon_right: "email"
+            icon_right_color: 1,1,1,1
+            color_mode: 'custom'
+            current_hint_text_color: rgba('#c2d1d0')
+		MDTextField:
+			id: passwd
+			hint_text: 'Password'
+            mode: "rectangle"
+			password: True
+			size_hint: (0.6, 0.1)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.30}
+            line_color_focus: rgba('#39aea8')
+            icon_right: "key-variant"
+            icon_right_color: 1,1,1,1
+            color_mode: 'custom'
+            current_hint_text_color: rgba('#c2d1d0')
+		MDTextField:
+			id: cpass
+			hint_text: 'Confirm Password'
+            mode: "rectangle"
+			password: True
+			size_hint: (0.6, 0.1)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.20}
+            line_color_focus: rgba('#39aea8')
+            icon_right: "key-variant"
+            icon_right_color: 1,1,1,1
+            color_mode: 'custom'
+            current_hint_text_color: rgba('#c2d1d0')
+		MDFillRoundFlatButton:
+			text: 'Sign up'
+			md_bg_color: rgba('#39aea8')
+			text_color: 1, 1, 1, 1
+			size_hint: (0.3, 0.05)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.10}
+            on_press:
+                root.do_register(fname.text,lname.text,emailid.text,passwd.text,cpass.text)

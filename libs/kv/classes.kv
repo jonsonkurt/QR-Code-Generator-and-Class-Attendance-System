@@ -1,0 +1,111 @@
+# forms the design and layout of class screen
+<ClassScreen>
+    BoxLayout:
+        pos_hint: {'center_y': 0.505, 'center_x': 0.5}
+        size_hint: 0.9, 0.9
+
+        MDScrollViewRefreshLayout:
+            id: refresh_layout
+            refresh_callback: root.refresh_callback
+            root_layout: root
+
+            MDBoxLayout:
+                id: class_list
+                orientation: 'vertical'
+                index: 0
+                adaptive_height: True
+                padding: '5dp'
+                spacing: '13dp'
+
+    MDFloatingActionButton:
+        icon: "plus"
+        theme_text_color: 'Custom'
+        md_bg_color: rgba('#8E8686')
+        pos_hint: {'center_x' : 0.85, 'center_y' : 0.1}
+        on_press: root.add_class_dialog()
+
+# forms the design and layout of every class card
+<Card1>
+    orientation: "vertical"
+	size_hint: None, None
+    size: "314dp" , "80dp"
+	pos_hint: {"center_x": .5, "center_y": .5}
+	radius: 15,15,15,15
+	elevation: 3
+	padding: '15dp'
+	spacing: '8dp'
+
+    on_press:
+        root.save_key(root.index)
+        app.current_index = 5
+
+	on_release:
+        app.show_screen("view_class")
+
+    canvas:
+        Color:
+            rgba: rgba('#39aea8')
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+
+	MDLabel:
+		text: root.title
+		text: root.title
+		font_size: '20dp'
+		markup: True
+		halign: "left"
+		theme_text_color: 'Custom'
+		text_color: rgba('#FFFFFF')
+
+	FloatLayout:
+		size_hint: 1, 0.15
+		canvas:
+			Color:
+				rgba: rgba('#FFFFFF')
+			Rectangle:
+				size: self.size
+				pos: self.pos
+
+	MDLabel:
+		text: root.body
+		font_size: '10dp'
+		markup: True
+		halign: "left"
+		theme_text_color: 'Custom'
+		text_color: rgba('#FFFFFF')
+
+# forms the design and layout of the class list
+<ViewClass>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "450dp"
+
+# forms the design and layout when adding class
+<AddClass>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "150dp"
+    elevation: 20
+
+    MDTextField:
+		id: subject_name
+        hint_text: "Subject Name"
+		line_color_focus: rgba('#303030')
+
+    MDTextField:
+		id: section_name
+        hint_text: "Course and Section"
+		line_color_focus: rgba('#303030')
+
+	MDFillRoundFlatButton:
+		text: " Add "
+		theme_text_color: 'Custom'
+		md_bg_color: rgba('#39aea8')
+		text_color: rgba('#FFFFFF')
+		pos_hint: {'center_x': .9, 'center_y': .6}
+        on_release:
+            root.save_class(subject_name.text, section_name.text)
+            app.show_screen('classes')

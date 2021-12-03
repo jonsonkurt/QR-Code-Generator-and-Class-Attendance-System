@@ -1,0 +1,93 @@
+# forms the design and layout of login screen
+<LoginScreen>:
+    FitImage:
+        source: 'Media/BG.png'
+	FloatLayout:
+		canvas:
+			Color:
+				rgba: rgba('#39aea8')
+			Triangle:
+				points: (0, self.size[1] - (0.4*self.size[1]), 0, self.size[1], self.size[0], self.size[1])
+			Color:
+				rgba: rgba('#9ac1bf')
+            Triangle:
+                points:
+                    (self.size[0], self.size[1] - (0.4*self.size[1]), \
+                    self.size[0]//2, self.size[1] - (0.2*self.size[1]), self.size[0], self.size[1])
+        MDLabel:
+			text: 'QR Code-Based Attendance System'
+            pos_hint: {'center_x': 0.5, 'center_y' : 0.555}
+            bold: True
+			halign: "center"
+			theme_text_color: 'Custom'
+			text_color: (1, 1, 1, 1)
+			text_size: (0.6, 0.4)
+        MDIconButton:
+			pos_hint: {'center_x': 0.5, 'center_y' : 0.666}
+			icon: 'Media/QR_Attendance_Logo.png'
+            user_font_size: "64sp"
+		MDTextField:
+			id: username
+            hint_text: "Email Address"
+            color_mode: 'custom'
+			text_color: (1, 1, 1, 1)
+			size_hint: (0.8,0.1)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.43}
+            line_color_focus: rgba('#ffffff')
+            line_color_normal: rgba('#39aea8')
+            icon_right: "email"
+            icon_right_color: rgba('#ffffff')
+            current_hint_text_color: rgba('#c2d1d0')
+		MDTextField:
+			id: password
+			hint_text: 'Password'
+			password: True
+			size_hint: (0.8, 0.1)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.33}
+            line_color_focus: rgba('#ffffff')
+            line_color_normal: rgba('#39aea8')
+            icon_right: "key-variant"
+            icon_right_color: 1,1,1,1
+            color_mode: 'custom'
+            current_hint_text_color: rgba('#c2d1d0')
+		MDTextButton:
+			text: f"[b]Don't have an account? Sign up[/b]"
+            theme_text_color: 'Custom'
+            text_color: rgba('#c2d1d0')
+			markup: True
+			pos_hint: {'center_x': .5, 'center_y': .26}
+			font_size: '13sp'
+            on_press:
+                root.manager.transition.direction="left"
+                root.manager.transition.duration=.5
+                app.root.current = "register"
+		MDTextButton:
+			text: f'[b]Forgot password?[/b]'
+            theme_text_color: 'Custom'
+            text_color: rgba('#c2d1d0')
+			markup: True
+			pos_hint: {'center_x': .5, 'center_y': .15}
+			font_size: '13sp'
+            on_press:
+                root.manager.transition.direction="left"
+                root.manager.transition.duration=.5
+                root.manager.current="forgot"
+		MDFillRoundFlatButton:
+			text: 'Log in'
+			md_bg_color: rgba('#39aea8')
+			text_color: 1, 1, 1, 1
+			size_hint: (0.2, 0.05)
+			pos_hint: {'center_x' : 0.5, 'center_y' : 0.205}
+            on_press:
+                root.manager.transition.direction="left"
+                root.manager.transition.duration=.5
+                root.do_login(username.text,password.text)
+                username.text = ""
+                password.text = ""
+        MDIconButton:
+			pos_hint: {'center_x': 0.5, 'center_y' : 0.1}
+			icon: 'Media/Generate.png'
+            on_press:
+                root.manager.transition.direction="left"
+                root.manager.transition.duration=.5
+                root.manager.current="generate"

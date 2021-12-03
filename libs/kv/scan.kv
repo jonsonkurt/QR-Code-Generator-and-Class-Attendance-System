@@ -1,0 +1,97 @@
+#:import ZBarCam kivy_garden.zbarcam.ZBarCam
+
+# forms the design and layout of the scan screen
+<ScanScreen>
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': 0.65, 'center_x': 0.5}
+        size_hint: 0.5, 0.35
+
+        canvas:
+            Color:
+                rgba: rgba('#39aea8')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        ZBarCam:
+            id: qrcodecam
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': 0.8, 'center_x': 0.5}
+        size_hint: 0.5, 0.150
+
+        canvas:
+            Color:
+                rgba: rgba('#39aea8')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+        size_hint: 0.5, 0.150
+
+        canvas:
+            Color:
+                rgba: rgba('#39aea8')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': 0.65, 'center_x': 0.313}
+        size_hint: 0.125, 0.4
+
+        canvas:
+            Color:
+                rgba: rgba('#39aea8')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        pos_hint: {'center_y': 0.65, 'center_x': 0.6875}
+        size_hint: 0.125, 0.4
+
+        canvas:
+            Color:
+                rgba: rgba('#39aea8')
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+    MDLabel:
+        id: scanned_name
+        size_hint_x: 1
+        text: ''.join([str(symbol.data.decode("UTF-8")) for symbol in qrcodecam.symbols])
+        text2: ''.join([str(symbol.data) for symbol in qrcodecam.symbols])
+        markup: True
+        font_size: '15dp'
+        theme_text_color: 'Custom'
+        text_color: rgba('#8E8686')
+        halign: 'center'
+        pos_hint: {'center_y': 0.3, 'center_x': 0.5}
+        on_text: root.save_scanned()
+
+	MDFillRoundFlatButton:
+		text: "[b] STOP SCANNING [/b]"
+        bold: True
+        multiline: True
+        markup: True
+        halign: 'Center'
+        font_size: '10dp'
+		theme_text_color: 'Custom'
+		md_bg_color: rgba('#8E8686')
+		text_color: rgba('#FFFFFF')
+		pos_hint: {'center_y': 0.2, 'center_x': 0.5}
+        size_hint: 0.385, 0.060
+        radius: [40, 40, 40, 40]
+        on_press:
+            app.show_screen("view_class")
+            root.scan()

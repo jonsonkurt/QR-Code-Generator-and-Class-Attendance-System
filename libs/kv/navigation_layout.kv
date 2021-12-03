@@ -1,0 +1,112 @@
+# form the design and layout of the hamburger menu
+<NavLayoutScreen>:
+    MDNavigationLayout:
+        id: navigation_layout
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDToolbar:
+                        id: toolbar
+                        title: 'QR Attendance'
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        theme_text_color: 'Custom'
+                        md_bg_color: rgba('#39aea8')
+                        elevation:5
+
+                    ScreenManager:
+                        id: manage
+
+                        ClassScreen:
+                            name: 'classes'
+
+                        ViewClassScreen:
+                            name: 'view_class'
+
+                        ScanScreen:
+                            name: 'scan'
+
+                        AboutScreen:
+                            name: 'about_app'
+
+                        HelpScreen:
+                            name: 'help'
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            canvas:
+                Color:
+                    rgba: rgba('#303030')
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                orientation: 'vertical'
+                padding: "8dp"
+                spacing: "8dp"
+                Image:
+                    size_hint_y: .3
+                    source: "Media/QR_Attendance_Logo.png"
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: "Classes"
+                            theme_text_color: 'Custom'
+                            text_color: rgba('#FFFFFF')
+                            on_release:
+                                app.show_screen("classes")
+                                nav_drawer.set_state("close")
+                            IconLeftWidget:
+                                icon: "folder-open"
+                                theme_text_color: 'Custom'
+                                text_color: rgba('#FFFFFF')
+                                on_release:
+                                    app.show_screen("classes")
+                                    nav_drawer.set_state("close")
+                        OneLineIconListItem:
+                            text: "About the app"
+                            theme_text_color: 'Custom'
+                            text_color: rgba('#FFFFFF')
+                            on_release:
+                                app.show_screen("about_app")
+                                nav_drawer.set_state("close")
+                            IconLeftWidget:
+                                icon: "card-bulleted-settings"
+                                theme_text_color: 'Custom'
+                                text_color: rgba('#FFFFFF')
+                                on_release:
+                                    app.show_screen("about_app")
+                                    nav_drawer.set_state("close")
+                        OneLineIconListItem:
+                            text: "Help"
+                            theme_text_color: 'Custom'
+                            text_color: rgba('#FFFFFF')
+                            on_release:
+                                app.show_screen("help")
+                                nav_drawer.set_state("close")
+                            IconLeftWidget:
+                                icon: "account-question"
+                                theme_text_color: 'Custom'
+                                text_color: rgba('#FFFFFF')
+                                on_release:
+                                    app.show_screen("help")
+                                    nav_drawer.set_state("close")
+                        OneLineIconListItem:
+                            text: "Logout"
+                            theme_text_color: 'Custom'
+                            text_color: rgba('#FFFFFF')
+                            on_release:
+                                app.show_screen("classes")
+                                root.manager.current="login"
+                                nav_drawer.set_state("close")
+                            IconLeftWidget:
+                                icon: "logout"
+                                theme_text_color: 'Custom'
+                                text_color: rgba('#FFFFFF')
+                                on_release:
+                                    nav_drawer.set_state("close")
+                                    #app.show_screen("classes")
+                                    root.manager.current="login"
